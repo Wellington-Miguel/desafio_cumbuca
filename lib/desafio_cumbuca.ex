@@ -15,17 +15,23 @@ defmodule DesafioCumbuca do
         nome_trimado -> obter_nomes(nomes ++ [nome_trimado])
       end
     end
+    def enumerar_publico(nomes) do
+      enumerar(nomes)
+    end
+    def resultado_publico(nomes) do
+      resultado(nomes)
+    end
     defp enumerar(nomes) do
       nomes |> Enum.reduce([], fn nome_busca, lista_nomes ->
                 frequencia = Enum.filter(lista_nomes, fn nome_atual ->
                   String.starts_with?(nome_atual, nome_busca)
                   end)
                 if length(frequencia) == 0 do
-                   lista_nomes ++ ["#{nome} I"]
+                   lista_nomes ++ ["#{nome_busca} I"]
                 else
                   enumeracao = length(frequencia) + 1
                   enum_romano = para_romano(enumeracao)
-                  lista_nomes ++ ["#{nome} #{enum_romano}"]
+                  lista_nomes ++ ["#{nome_busca} #{enum_romano}"]
                 end
               end)
     end
@@ -47,6 +53,7 @@ defmodule DesafioCumbuca do
     end
     defp resultado(nomes_ordenados) do
        IO.puts(Enum.join(nomes_ordenados, "\n"))
+       Enum.join(nomes_ordenados, "\n")
     end
 end
 
