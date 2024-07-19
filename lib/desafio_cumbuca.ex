@@ -16,18 +16,16 @@ defmodule DesafioCumbuca do
       end
     end
     defp enumerar(nomes) do
-      nomes |> Enum.reduce([], fn nome, lista_nomes ->
-                frequencia = Enum.filter(lista_nomes, fn x ->
-                  String.starts_with?(x, nome)
+      nomes |> Enum.reduce([], fn nome_busca, lista_nomes ->
+                frequencia = Enum.filter(lista_nomes, fn nome_atual ->
+                  String.starts_with?(nome_atual, nome_busca)
                   end)
                 if length(frequencia) == 0 do
-                   Map.put(mapa_nomes, nome, 1)
                    lista_nomes ++ ["#{nome} I"]
                 else
-                  enumerador = Map.get(mapa_nomes, nome)
-                  Map.put(mapa_nomes, nome, enumerador + 1)
-                  romano = para_romano(enumerador + 1)
-                  lista_nomes ++ ["#{nome} #{romano}"]
+                  enumeracao = length(frequencia) + 1
+                  enum_romano = para_romano(enumeracao)
+                  lista_nomes ++ ["#{nome} #{enum_romano}"]
                 end
               end)
     end
