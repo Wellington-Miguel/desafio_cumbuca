@@ -4,21 +4,23 @@ defmodule DesafioCumbuca do
     IO.puts("Olá, bem-vindo ao melhor enumerador de reis e rainhas de toda Combúquia!")
     IO.puts("-------------------------------------------------------------------------\n")
     IO.puts("Por favor, insira os nomes dos monarcas, um por linha.\nFinalize apertando Enter duas vezes.\n")
-    nomes = criar_lista([])
+    nomes = obter_nomes([])
     nomes_ordenados = enumerar(nomes)
     resultado(nomes_ordenados)
   end
-    defp criar_lista(nomes) do
+    defp obter_nomes(nomes) do
       nome = IO.gets("") |> String.trim()
       case nome do
         "" -> nomes
-        nome_trimado -> criar_lista(nomes ++ [nome_trimado])
+        nome_trimado -> obter_nomes(nomes ++ [nome_trimado])
       end
     end
     defp enumerar(nomes) do
-      mapa_nomes=%{}
       nomes |> Enum.reduce([], fn nome, lista_nomes ->
-                if Map.get(mapa_nomes, nome) == nil do
+                frequencia = Enum.filter(lista_nomes, fn x ->
+                  String.starts_with?(x, nome)
+                  end)
+                if length(frequencia) == 0 do
                    Map.put(mapa_nomes, nome, 1)
                    lista_nomes ++ ["#{nome} I"]
                 else
