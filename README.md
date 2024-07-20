@@ -67,8 +67,5 @@ Para executar o projeto, siga os passos abaixo:
     DesafioCumbuca.main()
     ```
 
-## Observações
 
-- Certifique-se de que todos os módulos (`interface_usuario`, `obter_nomes`, `enumerar_nomes`) estão implementados corretamente.
-- Teste o funcionamento do programa inserindo nomes e verificando a enumeração correta.
 
