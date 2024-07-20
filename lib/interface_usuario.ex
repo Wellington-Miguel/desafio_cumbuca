@@ -7,7 +7,9 @@ defmodule InterfaceUsuario do
   end
 
   def mostrar_resultado(nomes_ordenados) do
+    #saída para interface
     IO.puts(Enum.join(nomes_ordenados, "\n"))
+    #Para testes
     Enum.join(nomes_ordenados, "\n")
   end
 end
